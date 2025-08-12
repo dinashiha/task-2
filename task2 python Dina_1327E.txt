@@ -1,0 +1,106 @@
+task 1 chatbot
+
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
+from cleaner import clean_corpus
+
+CORPUS_FILE = "chat.txt"
+
+chatbot = ChatBot("Chatpot")
+
+trainer = ListTrainer(chatbot)
+cleaned_corpus = clean_corpus(CORPUS_FILE)
+trainer.train(cleaned_corpus)
+
+exit_conditions = (":q", "quit", "exit")
+while True:
+    query = input("> ")
+    if query in exit_conditions:
+        break
+    else:
+        print(f"🪴 {chatbot.get_response(query)}")
+
+
+second task python
+import string
+
+def main():
+    K, M = map(int, input().split())
+    lists = []
+    for _ in range(K):
+        line = list(map(int, input().split()))
+        N_i=line[0]
+        elements = line[1:]
+        lists.append(elements)
+
+    # Collect the maximum squared element from each list
+    max_squares_per_list = []
+    for sublist in lists:
+        if sublist:  # Handle empty sublists if possible
+            max_squares_per_list.append(max(map(lambda i: i*i, sublist)))
+        else:
+            max_squares_per_list.append(0) # Or handle as per problem requirements
+
+    # Sum the collected maximum squares and apply modulo M
+    result = sum(max_squares_per_list) % M
+    print(result)
+
+if __name__ == "__main__":
+       main()
+
+
+third task python password (need to be editied yet)
+import string
+import random
+
+characters = string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation
+length = int(input("Enter the desired password length: "))
+
+def generate_password(length):
+    password = ''.join(random.choices(characters, k=length))
+    return password
+
+# Corrected line: Pass the 'length' variable to the function
+password = generate_password(length) 
+print(password)
+
+fourth task pyton Editing Image
+
+from PIL import Image
+before = Image.open("bridge.png")
+box = (0,0,200,200)
+after = before.crop(box)
+after.save("new.png")
+
+fifth task
+import math
+import os
+import random
+import re
+import sys
+
+
+first_multiple_input = input().rstrip().split()
+n= int(first_multiple_input[0])
+m = int(first_multiple_input[1])
+
+matrix = []
+    # Read the matrix column by column
+for _ in range(n):
+        matrix_item = input()
+        matrix.append(matrix_item)
+
+decoded_list= list(zip(*matrix))
+    
+    
+decoded_string = ''
+    # Read the matrix column by column
+for item in decoded_list :
+ decoded_string = decoded_string + "".join(item)
+
+    # Replace non-alphanumeric characters between two alphanumeric characters with a single space
+    # and handles multiple non-alphanumeric characters being replaced by a single space.
+decoded_script = re.sub(r'(?<=[A-Za-z0-9])[^A-Za-z0-9]+(?=[A-Za-z0-9])', ' ', decoded_string)
+
+   
+print(decoded_script)
